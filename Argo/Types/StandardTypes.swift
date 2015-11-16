@@ -63,7 +63,7 @@ public extension Optional where Wrapped: Decodable, Wrapped == Wrapped.DecodedTy
 public extension CollectionType where Generator.Element: Decodable, Generator.Element == Generator.Element.DecodedType {
   static func decode(j: JSON) -> Decoded<[Generator.Element]> {
     switch j {
-    case let .Array(a): return sequence(a.map(Generator.Element.decode))
+    case let .Array(a): return decodeArray(a)
     default: return .typeMismatch("Array", actual: j)
     }
   }
@@ -75,6 +75,13 @@ public extension DictionaryLiteralConvertible where Value: Decodable, Value == V
     case let .Object(o): return sequence(Value.decode <^> o)
     default: return .typeMismatch("Object", actual: j)
     }
+  }
+}
+
+private func decodeArray<T: Decodable where T.DecodedType == T>(j: [JSON]) -> Decoded<[T]> {
+  return j.reduce(pure([])) { accum, elem in
+    let o = T.decode(elem)
+    return curry(+) <^> accum <*> ({ [$0] } <^> o)
   }
 }
 
