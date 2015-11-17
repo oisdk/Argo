@@ -1,18 +1,16 @@
 public func sequence<T>(xs: [Decoded<T>]) -> Decoded<[T]> {
-  var accum: Decoded<[T]> = pure([])
+  var accum: [T] = []
 
   for elem in xs {
-    switch (accum, elem) {
-    case (.Success(var a), .Success(let x)):
-      a.append(x)
-      accum = pure(a)
-    case let (.Failure(e), _): accum = .Failure(e)
-    case let (_, .Failure(e)): accum = .Failure(e)
-    default: break
+    switch elem {
+    case let .Success(value):
+        accum.append(value)
+    case let .Failure(error):
+        return .Failure(error)
     }
-  }
+   }
 
-  return accum
+  return pure(accum)
 }
 
 public func sequence<T>(xs: [String: Decoded<T>]) -> Decoded<[String: T]> {
