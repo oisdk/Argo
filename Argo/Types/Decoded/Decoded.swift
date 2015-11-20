@@ -1,7 +1,7 @@
 public enum Decoded<T> {
   case Success(T)
   case Failure(DecodeError)
-
+  
   public var value: T? {
     switch self {
     case let .Success(value): return value
@@ -26,7 +26,7 @@ public extension Decoded {
     case let .Failure(.Custom(x)): return .Failure(.Custom(x))
     }
   }
-
+  
   static func fromOptional<T>(x: T?) -> Decoded<T> {
     switch x {
     case let .Some(value): return .Success(value)
@@ -39,15 +39,15 @@ public extension Decoded {
   static func typeMismatch<T, U: CustomStringConvertible>(expected: String, actual: U) -> Decoded<T> {
     return .typeMismatch(expected, actual: "\(actual)")
   }
-
+  
   static func typeMismatch<T>(expected: String, actual: String) -> Decoded<T> {
     return .Failure(.TypeMismatch(expected: expected, actual: actual))
   }
-
+  
   static func missingKey<T>(name: String) -> Decoded<T> {
     return .Failure(.MissingKey(name))
   }
-
+  
   static func customError<T>(message: String) -> Decoded<T> {
     return .Failure(.Custom(message))
   }
