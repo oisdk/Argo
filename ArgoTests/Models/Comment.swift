@@ -1,5 +1,5 @@
 import Argo
-
+import Curry
 
 struct Comment {
   let id: Int

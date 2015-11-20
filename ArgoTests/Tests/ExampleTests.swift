@@ -1,13 +1,13 @@
 import XCTest
 import Argo
-
+import Curry
 
 class ExampleTests: XCTestCase {
   func testJSONWithRootArray() {
-    let stringArray: List<String>? = JSONFromFile("array_root").flatMap(decode)
+    let stringArray: [String]? = JSONFromFile("array_root").flatMap(decode)
 
     XCTAssertNotNil(stringArray)
-    XCTAssert(stringArray! == ["foo", "bar", "baz"])
+    XCTAssertEqual(stringArray!, ["foo", "bar", "baz"])
   }
 
   func testJSONWithRootObject() {
