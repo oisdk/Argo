@@ -11,6 +11,9 @@
 		4D5F6DDA1B3832C200D79B25 /* user_with_nested_name.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D5F6DD81B3832C200D79B25 /* user_with_nested_name.json */; };
 		70FA98DE1BFF3E5A0059E964 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA98DD1BFF3E5A0059E964 /* List.swift */; };
 		70FA98DF1BFF416D0059E964 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA98DD1BFF3E5A0059E964 /* List.swift */; };
+		70FA98E11BFF623B0059E964 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA98E01BFF623B0059E964 /* ListTests.swift */; };
+		70FA98E31BFF63710059E964 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA98E01BFF623B0059E964 /* ListTests.swift */; };
+		70FA98E41BFF63720059E964 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA98E01BFF623B0059E964 /* ListTests.swift */; };
 		809754CB1BADF34200C409E6 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809754C11BADF34100C409E6 /* Argo.framework */; };
 		809754D81BADF36D00C409E6 /* Decoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87EB69E1ABC5F1300E3B0AB /* Decoded.swift */; };
 		809754D91BADF36D00C409E6 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87EB69F1ABC5F1300E3B0AB /* JSON.swift */; };
@@ -273,6 +276,7 @@
 /* Begin PBXFileReference section */
 		4D5F6DD81B3832C200D79B25 /* user_with_nested_name.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user_with_nested_name.json; sourceTree = "<group>"; };
 		70FA98DD1BFF3E5A0059E964 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		70FA98E01BFF623B0059E964 /* ListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
 		809754C11BADF34100C409E6 /* Argo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Argo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		809754CA1BADF34200C409E6 /* Argo-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Argo-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF92789C1B9365900038A7E1 /* RawRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawRepresentable.swift; path = Argo/Extensions/RawRepresentable.swift; sourceTree = SOURCE_ROOT; };
@@ -548,6 +552,7 @@
 				EA6DD69B1AB383FB00CA3A5B /* PerformanceTests.swift */,
 				EA47BB521AFC5B76002D2CCD /* DecodedTests.swift */,
 				EA1200CA1BAB5CBA006DDBD8 /* RawRepresentableTests.swift */,
+				70FA98E01BFF623B0059E964 /* ListTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1000,6 +1005,7 @@
 				809754ED1BADF3E400C409E6 /* ExampleTests.swift in Sources */,
 				809754F71BADF3E400C409E6 /* TestModel.swift in Sources */,
 				809754EF1BADF3E400C409E6 /* PerformanceTests.swift in Sources */,
+				70FA98E41BFF63720059E964 /* ListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,6 +1075,7 @@
 				EABDF68F1A9CD4EA00B6CC83 /* PListFileReader.swift in Sources */,
 				EAD9FB1019D21AF50031E006 /* JSONFileReader.swift in Sources */,
 				EAD9FB0219D211C10031E006 /* Post.swift in Sources */,
+				70FA98E11BFF623B0059E964 /* ListTests.swift in Sources */,
 				EABDF6941A9CD4FC00B6CC83 /* PListDecodingTests.swift in Sources */,
 				EAD9FB1819D49A3E0031E006 /* TestModel.swift in Sources */,
 				EAD9FB0E19D215570031E006 /* OptionalPropertyDecodingTests.swift in Sources */,
@@ -1134,6 +1141,7 @@
 				F862E0AB1A519D470093B028 /* TypeTests.swift in Sources */,
 				EA395DC81A52FA5300EB607E /* ExampleTests.swift in Sources */,
 				EADADCB41A5DB7F800B180EC /* EquatableTests.swift in Sources */,
+				70FA98E31BFF63710059E964 /* ListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
