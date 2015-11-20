@@ -60,8 +60,8 @@ public extension Optional where Wrapped: Decodable, Wrapped == Wrapped.DecodedTy
   }
 }
 
-public extension CollectionType where Generator.Element: Decodable, Generator.Element == Generator.Element.DecodedType {
-  static func decode(j: JSON) -> Decoded<[Generator.Element]> {
+public extension SequenceType where Generator.Element: Decodable, Generator.Element == Generator.Element.DecodedType {
+  static func decode(j: JSON) -> Decoded<List<Generator.Element>> {
     switch j {
     case let .Array(a): return sequence(a.map(Generator.Element.decode))
     default: return .typeMismatch("Array", actual: j)

@@ -2,7 +2,7 @@ import Foundation
 
 public enum JSON {
   case Object([Swift.String: JSON])
-  case Array([JSON])
+  indirect case Array(List<JSON>)
   case String(Swift.String)
   case Number(NSNumber)
   case Null
@@ -11,7 +11,7 @@ public enum JSON {
 public extension JSON {
   static func parse(json: AnyObject) -> JSON {
     switch json {
-    case let v as [AnyObject]: return .Array(v.map(parse))
+    case let v as [AnyObject]: return .Array(List(v).map(parse))
     case let v as [Swift.String: AnyObject]: return .Object(v.map(parse))
     case let v as Swift.String: return .String(v)
     case let v as NSNumber: return .Number(v)
