@@ -476,7 +476,7 @@ extension List {
   
   /**
    The same as the `reduce` function, except that `combine` is called on `self` in reverse,
-   and the arguments are flipped. The initial agument to `accumulator` for `combine` is
+   and the arguments are flipped. The initial argument to `accumulator` for `combine` is
    taken as the final element of `self`.
    */
   
