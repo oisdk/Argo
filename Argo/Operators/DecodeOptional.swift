@@ -23,21 +23,21 @@ public func <|? <T where T: Decodable, T == T.DecodedType>(json: JSON, keys: [St
 // MARK: Arrays
 
 // Pull array from JSON
-public func <|| <T where T: Decodable, T == T.DecodedType>(json: JSON, key: String) -> List<T>? {
+public func <|| <T where T: Decodable, T == T.DecodedType>(json: JSON, key: String) -> [T]? {
   return json <|| [key]
 }
 
 // Pull optional array from JSON
-public func <||? <T where T: Decodable, T == T.DecodedType>(json: JSON, key: String) -> List<T>?? {
+public func <||? <T where T: Decodable, T == T.DecodedType>(json: JSON, key: String) -> [T]?? {
   return json <||? [key]
 }
 
 // Pull embedded array from JSON
-public func <|| <T where T: Decodable, T == T.DecodedType>(json: JSON, keys: [String]) -> List<T>? {
+public func <|| <T where T: Decodable, T == T.DecodedType>(json: JSON, keys: [String]) -> [T]? {
   return (json <|| keys).value
 }
 
 // Pull embedded optional array from JSON
-public func <||? <T where T: Decodable, T == T.DecodedType>(json: JSON, keys: [String]) -> List<T>?? {
+public func <||? <T where T: Decodable, T == T.DecodedType>(json: JSON, keys: [String]) -> [T]?? {
   return (json <||? keys).value
 }

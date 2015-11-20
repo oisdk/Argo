@@ -1,15 +1,11 @@
-public func catDecoded<T>(xs: List<Decoded<T>>) -> List<T> {
-  return xs.reduceR(List<T>.Nil) { (elem, accum) in
-    elem.map(>|accum) ?? accum
+public func catDecoded<T>(xs: [Decoded<T>]) -> [T] {
+  return xs.reduce([]) { accum, elem in
+    elem.map { accum + [$0] } ?? accum
   }
 }
 
 public func catDecoded<T>(xs: [String: Decoded<T>]) -> [String: T] {
-  var res: [String:T] = [:]
-  for (k,v) in xs {
-    if let v = v.value {
-      res[k] = v
-    }
+  return xs.reduce([:]) { accum, elem in
+    elem.1.map { accum + [elem.0: $0] } ?? accum
   }
-  return res
 }

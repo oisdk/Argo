@@ -23,21 +23,21 @@ public func <|? <A where A: Decodable, A == A.DecodedType>(json: JSON, keys: [St
 // MARK: Arrays
 
 // Pull array from JSON
-public func <|| <A where A: Decodable, A == A.DecodedType>(json: JSON, key: String) -> Decoded<List<A>> {
+public func <|| <A where A: Decodable, A == A.DecodedType>(json: JSON, key: String) -> Decoded<[A]> {
   return json <|| [key]
 }
 
 // Pull optional array from JSON
-public func <||? <A where A: Decodable, A == A.DecodedType>(json: JSON, key: String) -> Decoded<List<A>?> {
+public func <||? <A where A: Decodable, A == A.DecodedType>(json: JSON, key: String) -> Decoded<[A]?> {
   return .optional(json <|| [key])
 }
 
 // Pull embedded array from JSON
-public func <|| <A where A: Decodable, A == A.DecodedType>(json: JSON, keys: [String]) -> Decoded<List<A>> {
+public func <|| <A where A: Decodable, A == A.DecodedType>(json: JSON, keys: [String]) -> Decoded<[A]> {
   return flatReduce(keys, initial: json, combine: decodedJSON) >>- Array<A>.decode
 }
 
 // Pull embedded optional array from JSON
-public func <||? <A where A: Decodable, A == A.DecodedType>(json: JSON, keys: [String]) -> Decoded<List<A>?> {
+public func <||? <A where A: Decodable, A == A.DecodedType>(json: JSON, keys: [String]) -> Decoded<[A]?> {
   return .optional(json <|| keys)
 }
