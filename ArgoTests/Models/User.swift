@@ -1,5 +1,5 @@
 import Argo
-import Curry
+
 
 struct User {
   let id: Int

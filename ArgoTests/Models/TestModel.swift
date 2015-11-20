@@ -1,14 +1,14 @@
 import Argo
-import Curry
+
 
 struct TestModel {
   let numerics: TestModelNumerics
   let string: String
   let bool: Bool
-  let stringArray: [String]
-  let stringArrayOpt: [String]?
-  let eStringArray: [String]
-  let eStringArrayOpt: [String]?
+  let stringArray: List<String>
+  let stringArrayOpt: List<String>?
+  let eStringArray: List<String>
+  let eStringArrayOpt: List<String>?
   let userOpt: User?
   let dict: [String: String]
 }
