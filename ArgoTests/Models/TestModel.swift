@@ -4,10 +4,10 @@ struct TestModel {
   let numerics: TestModelNumerics
   let string: String
   let bool: Bool
-  let stringArray: List<String>
-  let stringArrayOpt: List<String>?
-  let eStringArray: List<String>
-  let eStringArrayOpt: List<String>?
+  let stringArray: [String]
+  let stringArrayOpt: [String]?
+  let eStringArray: [String]
+  let eStringArrayOpt: [String]?
   let userOpt: User?
   let dict: [String: String]
 }

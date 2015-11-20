@@ -1,6 +1,6 @@
-public func catDecoded<T>(xs: List<Decoded<T>>) -> List<T> {
-  return xs.reduceR(List<T>.None) { (elem, accum) in
-    elem.map(>|accum) ?? accum
+public func catDecoded<T>(xs: [Decoded<T>]) -> [T] {
+  return xs.reduce([]) { accum, elem in
+    elem.map { accum + [$0] } ?? accum
   }
 }
 

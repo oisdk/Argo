@@ -4,7 +4,7 @@ struct Post {
   let id: Int
   let text: String
   let author: User
-  let comments: List<Comment>
+  let comments: [Comment]
 }
 
 extension Post: Decodable {
