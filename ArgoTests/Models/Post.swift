@@ -1,5 +1,4 @@
 import Argo
-import Curry
 
 struct Post {
   let id: Int

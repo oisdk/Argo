@@ -1,5 +1,4 @@
 import Argo
-import Curry
 
 struct TestModel {
   let numerics: TestModelNumerics
