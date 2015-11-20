@@ -3,7 +3,12 @@ public func sequence<T>(xs: List<Decoded<T>>) -> Decoded<List<T>> {
 }
 
 public func sequence<T>(xs: [String: Decoded<T>]) -> Decoded<[String: T]> {
-  return xs.reduce(pure([:])) { accum, elem in
-    curry(+) <^> accum <*> ({ [elem.0: $0] } <^> elem.1)
+  var accum: [String:T] = [:]
+  for (k,x) in xs {
+    switch x {
+    case let .Success(v): accum[k] = v
+    case let .Failure(e): return .Failure(e)
+    }
   }
+  return .Success(accum)
 }

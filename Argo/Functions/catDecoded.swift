@@ -5,7 +5,7 @@ public func catDecoded<T>(xs: List<Decoded<T>>) -> List<T> {
 }
 
 public func catDecoded<T>(xs: [String: Decoded<T>]) -> [String: T] {
-  return xs.reduce([:]) { accum, elem in
-    elem.1.map { accum + [elem.0: $0] } ?? accum
-  }
+  var accum: [String:T] = [:]
+  for (k,x) in xs { if case let .Success(v) = x { accum[k] = v } }
+  return accum
 }
