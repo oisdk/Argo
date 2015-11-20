@@ -29,6 +29,15 @@ func behavesSame(onAr: [Int] -> [Int], onList: List<Int> -> List<Int>) -> Void {
   }
 }
 
+func randPred() -> (Int -> Bool) {
+  let n = Int(arc4random_uniform(10)) + 1
+  return {$0 % n == 0}
+}
+
+func randTransform() -> (Int -> Int) {
+  let n = Int(arc4random_uniform(10))
+  return { $0 - n }
+}
 
 class ListTests: XCTestCase {
   
@@ -78,7 +87,6 @@ class ListTests: XCTestCase {
       let n = Int.rand
       behavesSame({$0 + [n]}, onList: {$0.appended(n)})
     }
-    
   }
 
   func testProperties() {
@@ -105,22 +113,17 @@ class ListTests: XCTestCase {
     for n in (0..<5) {
       behavesSame({ Array($0.prefix(n)) }, onList: {$0.prefix(n)})
       behavesSame({ Array($0.suffix(n)) }, onList: {$0.suffix(n)})
-      behavesSame({ Array($0.suffix(n)) }, onList: {$0.suffix(n)})
     }
   }
 
   func testSplit() {
     let maxSplits = (0...20)
     let splitFuncs = (0...10).map {
-      _ -> (Int -> Bool) in
-      let n = Int(arc4random_uniform(5)) + 1
-      return { $0 % n == 0 }
+      _ -> (Int -> Bool) in randPred()
     }
     let allows = [true, false]
-    let arrays = (0...10).map { (a: Int) -> [Int] in
-      (0..<a).map { _ in Int(arc4random_uniform(100)) }
-    }
-    let lists = arrays.map{List($0)}
+    let arrays = (0...10).map(randArray)
+    let lists = arrays.map(List.init)
     for (array, list) in zip(arrays, lists) {
       for maxSplit in maxSplits {
         for splitFunc in splitFuncs {
@@ -134,5 +137,41 @@ class ListTests: XCTestCase {
         }
       }
     }
+  }
+  
+  func testMap() {
+    for _ in (0..<20) {
+      let f = randTransform()
+      behavesSame({$0.map(f)}, onList: {$0.map(f)})
+    }
+  }
+  
+  func testFilter() {
+    for _ in (0..<20) {
+      let p = randPred()
+      behavesSame({$0.filter(p)}, onList: {$0.filter(p)})
+    }
+  }
+  
+  func testFlatMap() {
+    for i in (0..<20) {
+      let f: Int -> Repeat<Int> = { Repeat(count: i, repeatedValue: $0) }
+      behavesSame({$0.flatMap(f)}, onList: {$0.flatMap(f)})
+    }
+  }
+  
+  func testReduce() {
+    behavesSame({$0.reduce(0, combine: +)}, onList: {$0.reduce(0, combine: +)})
+  }
+  
+  func testScan() {
+    let scan: [Int] -> [Int] = { a in
+      a.indices.map(a.prefixThrough).map { $0.reduce(0,combine: +) }
+    }
+    behavesSame(scan, onList: {$0.scan(0, combine: +)})
+  }
+  
+  func testReverse() {
+    behavesSame({$0.reverse()}, onList: {$0.reverse()})
   }
 }
